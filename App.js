@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SignUp, SignIn } from "./src/pages/index";
+import { SignUp, SignIn, Main } from "./src/pages/index";
 import { View } from 'react-native';
 
 const App = () => {
@@ -9,11 +9,11 @@ const App = () => {
       style = {
         {
           backgroundColor : '#F4F2F1',
-          height : '100%'
+          height : '100%',
         }
       }
     >
-      <SignIn/>
+      <Main/>
     </View>
   );
 }

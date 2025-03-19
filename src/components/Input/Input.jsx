@@ -1,11 +1,15 @@
 import React from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import { Colors } from "../../assets/color/globalStyles";
 
 export const Input = ({
     placeholder,
+    icon,
 
-    button
+    borderColor,
+    placeholderColor,
+
+    button,
 }) => {
 
     const InputStyle = StyleSheet.create({
@@ -13,24 +17,38 @@ export const Input = ({
             flexDirection : 'row',
         },
 
-        Input : {
-            flex : 5,
+        inputContainer: {
+            flex: 5,
+            flexDirection: 'row',
 
-            height : 50,
+            alignItems: 'center',
 
-            backgroundColor : Colors.sub4,
+            backgroundColor: Colors.sub4,
 
-            borderColor : Colors.sub3,
-            borderWidth : 1,
-            borderRadius : 5,
+            borderColor: borderColor ? borderColor : Colors.sub3,
+            borderWidth: 1,
+            borderRadius: 5,
 
-            marginBottom : 30,
+            marginBottom: 30,
 
-            placeholderTextColor : Colors.sub3,
-            fontSize : 16,
-            fontWeight : 'bold',
+            paddingHorizontal: 10,
+            
+            height: 50,
+        },
 
-            padding : 15,
+        input: {
+            flex: 1,
+
+            fontSize: 16,
+            fontWeight: 'bold',
+
+            placeholderTextColor : placeholderColor ? placeholderColor : Colors.sub3,
+        },
+
+        icon: {
+            width: 20,
+            height: 20,
+            marginRight: 10,
         },
 
         button: {
@@ -61,11 +79,20 @@ export const Input = ({
         <View
             style = {InputStyle.container}
         >
-            <TextInput
-                style = {InputStyle.Input}
+            <View style={InputStyle.inputContainer}>
+                {icon && (
+                    <Image 
+                        source={icon} 
+                        style={InputStyle.icon}
+                    />
+                )}
+                <TextInput
+                    style={InputStyle.input}
 
-                placeholder={placeholder}
-            />
+                    placeholder={placeholder}
+                    placeholderTextColor={placeholderColor}
+                />
+            </View>
             {
                 button
                 ?
