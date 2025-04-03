@@ -4,7 +4,13 @@ import { Colors } from "../../assets/color/globalStyles";
 
 export const Input = ({
     placeholder,
+    
     icon,
+    behindIcon,
+
+    marginBottom,
+
+    borderRadius,
 
     borderColor,
     placeholderColor,
@@ -27,9 +33,9 @@ export const Input = ({
 
             borderColor: borderColor ? borderColor : Colors.sub3,
             borderWidth: 1,
-            borderRadius: 5,
+            borderRadius: borderRadius ? borderRadius : 5,
 
-            marginBottom: 30,
+            marginBottom: marginBottom,
 
             paddingHorizontal: 10,
             
@@ -46,9 +52,14 @@ export const Input = ({
         },
 
         icon: {
-            width: 20,
-            height: 20,
+            width: 24,
+            height: 24,
             marginRight: 10,
+        },
+
+        behindIcon : {
+            width: 24,
+            height: 24,
         },
 
         button: {
@@ -92,6 +103,12 @@ export const Input = ({
                     placeholder={placeholder}
                     placeholderTextColor={placeholderColor}
                 />
+                {behindIcon && (
+                    <Image 
+                        source={behindIcon} 
+                        style={InputStyle.behindIcon}
+                    />
+                )}
             </View>
             {
                 button

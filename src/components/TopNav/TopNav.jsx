@@ -16,16 +16,18 @@ export const TopNav = ({
         container : {
             width : '100%',
 
-            margin : 20,
+            flexDirection : 'row',
 
-            flexDirection : 'row'
+            backgroundColor : 'white'
         },
 
         image : {
             resizeMode : 'contain',
 
-            width : 36,
-            height : 36,
+            width : 24,
+            height : 24,
+
+            margin : 20,
         }
     })
 

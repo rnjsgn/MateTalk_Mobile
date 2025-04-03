@@ -9,20 +9,30 @@ export const SignUpList = () => {
         <View>
             <Input 
                 placeholder={"이름"}
+
+                marginBottom = {30}
             />
             <Input 
                 placeholder={"전화번호"}
+
+                marginBottom = {30}
             />
             <Input 
                 placeholder={"ID"}
+
+                marginBottom = {30}
 
                 button={"중복 체크"}
             />
             <Input 
                 placeholder={"PW"}
+
+                marginBottom = {30}
             />
             <Input 
                 placeholder={"PW 확인"}
+
+                marginBottom = {30}
             />
             <Button 
                 title={"회원가입"}

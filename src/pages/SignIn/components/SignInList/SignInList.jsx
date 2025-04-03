@@ -9,9 +9,13 @@ export const SignInList = () => {
         <View>
             <Input 
                 placeholder={"ID"}
+
+                marginBottom = {30}
             />
             <Input 
                 placeholder={"PW"}
+
+                marginBottom = {30}
             />
             <Button 
                 title={"로그인"}
