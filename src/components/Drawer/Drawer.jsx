@@ -1,7 +1,11 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+
 import { Colors } from "../../assets/color/globalStyles";
+
 import { Input } from "../Input/Input";
+import { Channel } from "../Channel/Channel";
+import { People } from "../People/People";
 
 export const Drawer = ({
     isOpen,
@@ -36,6 +40,7 @@ export const Drawer = ({
             width : '80%',
 
             marginTop : 30,
+            marginBottom : 20,
 
             alignSelf : 'center',
         },
@@ -49,7 +54,11 @@ export const Drawer = ({
             borderBottomWidth : 1,
             borderBottomColor : Colors.sub2,
 
-            margin : 20,
+            marginLeft : 20,
+            marginRight : 20,
+            marginBottom : 10,
+            marginTop : 10,
+
             padding : 10,
         },
 
@@ -89,24 +98,50 @@ export const Drawer = ({
                         placeholderColor={Colors.sub2}
                     />
                 </View>
-                <View style={drawerStyle.title}>
-                    <Text style={drawerStyle.name}>워크 스페이스</Text>
-                    <Image 
-                        style={drawerStyle.image} 
-                        source={require("../../assets/images/Plus.png")} 
+                <View>
+                    <View style={drawerStyle.title}>
+                        <Text style={drawerStyle.name}>워크 스페이스</Text>
+                        <Image 
+                            style={drawerStyle.image} 
+                            source={require("../../assets/images/Plus.png")} 
+                        />
+                    </View>
+                    <Channel 
+                        name={'IMPL'}
+
+                        count={5}
+                    />
+                    <Channel 
+                        name={'IMPL 대학원생'}
+
+                        count={12}
                     />
                 </View>
-                <View style={drawerStyle.title}>
-                    <View style={drawerStyle.members}>
+                <View>
+                    <View style={drawerStyle.title}>
+                        <View style={drawerStyle.members}>
+                            <Image 
+                                style={[drawerStyle.image, { marginRight: 10 }]} 
+                                source={require("../../assets/images/Members.png")} 
+                            />
+                            <Text style={drawerStyle.name}>구성원</Text>
+                        </View>
                         <Image 
-                            style={[drawerStyle.image, { marginRight: 10 }]} 
-                            source={require("../../assets/images/Members.png")} 
+                            style={drawerStyle.image} 
+                            source={require("../../assets/images/Plus.png")} 
                         />
-                        <Text style={drawerStyle.name}>구성원</Text>
                     </View>
-                    <Image 
-                        style={drawerStyle.image} 
-                        source={require("../../assets/images/Plus.png")} 
+                    <People
+                        name = {'김철수'}
+                        status={'online'}
+                    />
+                    <People
+                        name = {'이영희'}
+                        status={'offline'}
+                    />
+                    <People
+                        name = {'앙드레킴'}
+                        status={'away'}
                     />
                 </View>
             </View>

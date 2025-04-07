@@ -1,10 +1,23 @@
 import React from "react";
-import { View } from "react-native";
+import { Image, Text, View } from "react-native";
 
-export const Channel = () => {
+import { ChannelStyle } from "./ChannelStyle";
+
+export const Channel = ({
+    name,
+
+    count
+}) => {
     return(
-        <View>
-            
+        <View style ={ChannelStyle.container}>
+            <View style = {ChannelStyle.title}>
+                <Image 
+                    source={require("../../assets/images/Channel.png")}
+                    style = {ChannelStyle.icon}
+                />
+                <Text style = {ChannelStyle.name}>{name}</Text>
+            </View>
+            <Text style = {ChannelStyle.count}>{count}</Text>
         </View>
     )
 }
