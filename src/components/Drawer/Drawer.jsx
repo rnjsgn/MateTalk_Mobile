@@ -132,7 +132,7 @@ export const Drawer = ({
                         />
                     </View>
                     <People
-                        name = {'김철수'}
+                        name = {'장승훈'}
                         status={'online'}
                     />
                     <People

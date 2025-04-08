@@ -23,7 +23,7 @@ export const People = ({
                 style={[
                     PeopleStyle.statusIcon,
                     status == 'online'
-                        ? { backgroundColor: 'green' }
+                        ? { backgroundColor: Colors.primary }
                         : status == 'offline'
                         ? { backgroundColor: 'red' }
                         : { backgroundColor: Colors.sub3 },

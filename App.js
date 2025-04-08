@@ -1,21 +1,22 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { SignUp, SignIn, Main, Chat } from "./src/pages/index";
-import { View } from 'react-native';
+import { SignIn, SignUp, Main, Chat } from './src/pages/index';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View
-      style = {
-        {
-          backgroundColor : '#F4F2F1',
-          height : '100%',
-        }
-      }
-    >
-      <Chat/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
+        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+        <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+        <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
 export default App;
