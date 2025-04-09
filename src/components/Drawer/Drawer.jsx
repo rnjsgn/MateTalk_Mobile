@@ -1,16 +1,25 @@
-import React from "react";
-import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 import { Colors } from "../../assets/color/globalStyles";
 
 import { Input } from "../Input/Input";
 import { Channel } from "../Channel/Channel";
 import { People } from "../People/People";
+import { PopUp } from "../PopUp/PopUp";
 
 export const Drawer = ({
     isOpen,
     onClose
 }) => {
+    const [popOpen, setPopOpen] = useState(false);
+    const [popUpType, setPopUpType] = useState('')
+
+    const openPopUp = (type) => {
+        setPopOpen(true);
+        setPopUpType(type)
+    }
+
     const drawerStyle = StyleSheet.create({
         container: {
             width : '70%',
@@ -101,10 +110,12 @@ export const Drawer = ({
                 <View>
                     <View style={drawerStyle.title}>
                         <Text style={drawerStyle.name}>워크 스페이스</Text>
-                        <Image 
-                            style={drawerStyle.image} 
-                            source={require("../../assets/images/Plus.png")} 
-                        />
+                        <TouchableOpacity onPress={() => openPopUp('workspace')}>
+                            <Image 
+                                style={drawerStyle.image} 
+                                source={require("../../assets/images/Plus.png")}
+                            />
+                        </TouchableOpacity>
                     </View>
                     <Channel 
                         name={'IMPL'}
@@ -126,10 +137,12 @@ export const Drawer = ({
                             />
                             <Text style={drawerStyle.name}>구성원</Text>
                         </View>
-                        <Image 
-                            style={drawerStyle.image} 
-                            source={require("../../assets/images/Plus.png")} 
-                        />
+                        <TouchableOpacity onPress={() => openPopUp('member')}>
+                            <Image 
+                                style={drawerStyle.image} 
+                                source={require("../../assets/images/Plus.png")} 
+                            />
+                        </TouchableOpacity>
                     </View>
                     <People
                         name = {'장승훈'}
@@ -145,6 +158,12 @@ export const Drawer = ({
                     />
                 </View>
             </View>
+            <PopUp
+                popOpen={popOpen}
+                popClose = {() => setPopOpen(false)}
+
+                type={popUpType}
+            />
         </View>
     ) : null;
 };

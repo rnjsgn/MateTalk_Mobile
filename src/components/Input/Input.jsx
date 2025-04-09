@@ -11,9 +11,11 @@ export const Input = ({
     marginBottom,
 
     borderRadius,
-
     borderColor,
+
     placeholderColor,
+    placeholderSize,
+    placeholderWeight,
 
     button,
 }) => {
@@ -45,8 +47,8 @@ export const Input = ({
         input: {
             flex: 1,
 
-            fontSize: 16,
-            fontWeight: 'bold',
+            fontSize: placeholderSize ? placeholderSize : 16,
+            fontWeight: placeholderWeight ? placeholderWeight : 'bold',
 
             placeholderTextColor : placeholderColor ? placeholderColor : Colors.sub3,
         },
