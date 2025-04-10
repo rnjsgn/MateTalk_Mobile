@@ -37,9 +37,9 @@ export const PopUp = ({
             textAlign : 'right',
 
             fontSize : 20,
-            fontWeight : 'bold',
+            // fontWeight : 'bold',
 
-            color : Colors.sub2,
+            color : 'gray',
 
             padding : 15,
         },
@@ -52,7 +52,7 @@ export const PopUp = ({
             fontSize : 24,
             fontWeight : 'bold',
 
-            color : Colors.sub2,
+            // color : Colors.sub2,
 
             marginBottom : 10,
         },
@@ -60,7 +60,7 @@ export const PopUp = ({
         explain : {
             fontSize : 14,
 
-            color : Colors.sub2,
+            // color : Colors.sub2,
 
             marginBottom : 30,
         },
@@ -69,7 +69,7 @@ export const PopUp = ({
             fontSize : 14,
             fontWeight : 'bold',
 
-            color : Colors.sub2,
+            // color : Colors.sub2,
 
             alignSelf : 'left',
 
@@ -87,7 +87,7 @@ export const PopUp = ({
         terms : {
             fontSize : 12,
 
-            color : Colors.sub2,
+            // color : Colors.sub2,
         },
 
         bottom : {
@@ -104,7 +104,7 @@ export const PopUp = ({
             fontSize : 14,
             fontWeight : 'bold',
 
-            color : Colors.sub2
+            color : 'black'
         },
 
         button : {
@@ -142,12 +142,12 @@ export const PopUp = ({
 
                                     borderColor={Colors.sub2}
                                     
-                                    placeholderColor={Colors.sub2}
+                                    placeholderColor={'gray'}
                                     placeholderSize={14}
                                     placeholderWeight={'0'}
                                 />
                             </View>
-                            <Text style={PopUpStyle.terms}>서버를 만들면 메이트톡의 <Text style = {{fontWeight : 'bold'}}>커뮤니티 지침</Text>에 동의하게 됩니다.</Text>
+                            <Text style={PopUpStyle.terms}>서버를 만들면 메이트톡의 <Text style = {{fontWeight : 'bold', color : Colors.sub2}}>커뮤니티 지침</Text>에 동의하게 됩니다.</Text>
                         </View>
                         <View style = {PopUpStyle.bottom}>
                             <Pressable onPress={popClose}>
@@ -175,7 +175,7 @@ export const PopUp = ({
 
                                     borderColor={Colors.sub2}
                                     
-                                    placeholderColor={Colors.sub2}
+                                    placeholderColor={'gray'}
                                     placeholderSize={14}
                                     placeholderWeight={'0'}
                                 />
@@ -189,7 +189,7 @@ export const PopUp = ({
 
                                     borderColor={Colors.sub2}
                                     
-                                    placeholderColor={Colors.sub2}
+                                    placeholderColor={'gray'}
                                     placeholderSize={14}
                                     placeholderWeight={'0'}
                                 />
