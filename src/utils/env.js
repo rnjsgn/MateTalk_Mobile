@@ -1,0 +1,13 @@
+// src/utils/env.js
+import {
+    REACT_APP_BACKEND_URL,
+    REACT_APP_HOST_URL,
+    REACT_APP_SOCKET_URL,
+    REACT_APP_DEPLOY_TYPE,
+    REACT_APP_NODE_ENV,
+  } from '@env';
+  
+  export const BACKEND_URL = REACT_APP_BACKEND_URL;
+  export const HOST_URL = REACT_APP_HOST_URL;
+  export const SOCKET_URL = REACT_APP_SOCKET_URL;
+  export const ENV_TYPE = REACT_APP_DEPLOY_TYPE || REACT_APP_NODE_ENV;

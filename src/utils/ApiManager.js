@@ -2,6 +2,7 @@
  *
  */
 
+import { Alert } from 'react-native';
 import { getCookie, BACKEND_URL, envType } from '.';
 
 export default class ApiManager {
@@ -94,6 +95,7 @@ export default class ApiManager {
    */
   postRequest = async (url, body = null, stringify = true, method = 'POST') => {
     try {
+      Alert.alert(this.BASE_URL)
       const bodyData = body ? (stringify ? JSON.stringify(body) : body) : {};
       const headers = this.getHeaders();
       const response = await fetch(`${this.BASE_URL}${url}`, {

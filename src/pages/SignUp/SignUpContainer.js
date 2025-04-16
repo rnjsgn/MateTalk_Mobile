@@ -24,9 +24,9 @@ const SignUpContainer = () => {
 
         const result = await API.join(body)
 
-        Alert.alert("회원가입 정보", JSON.stringify(body));
+        Alert.alert("회원가입 정보", JSON.stringify(result));
     }
-
+    
     return(
         <SignUpPresenter
             setUserInfo = {setUserInfo}
