@@ -18,6 +18,8 @@ export const Input = ({
     placeholderWeight,
 
     button,
+
+    onChangeText
 }) => {
 
     const InputStyle = StyleSheet.create({
@@ -104,6 +106,8 @@ export const Input = ({
 
                     placeholder={placeholder}
                     placeholderTextColor={placeholderColor}
+
+                    onChangeText={onChangeText}
                 />
                 {behindIcon && (
                     <Image 
