@@ -6,7 +6,11 @@ import Logo from "../../../../assets/images/LOGO.png";
 import { SignInBoxStyle } from "./SignInBoxStyle";
 import { SignInList } from "../SignInList/SignInList";
 
-export const SignInBox = () => {
+export const SignInBox = ({
+    setLoginInfo,
+
+    login
+}) => {
     return(
         <View style = {SignInBoxStyle.container}>
             <Image
@@ -20,7 +24,11 @@ export const SignInBox = () => {
                     <Text style={SignInBoxStyle.title}>로그인</Text>
                     <View style={SignInBoxStyle.line} />
                 </View>
-                <SignInList />
+                <SignInList 
+                    setLoginInfo = {setLoginInfo}
+
+                    login = {login}
+                />
             </View>
         </View>
     )

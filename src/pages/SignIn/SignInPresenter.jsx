@@ -3,10 +3,18 @@ import { View } from "react-native";
 
 import { SignInBox } from "./components/SignInBox/SignInBox";
 
-export const SignInPresenter = () => {
+export const SignInPresenter = ({
+    setLoginInfo,
+
+    login
+}) => {
     return(
         <View>
-            <SignInBox />
+            <SignInBox 
+                setLoginInfo = {setLoginInfo}
+
+                login = {login}
+            />
         </View>
     )
 }
