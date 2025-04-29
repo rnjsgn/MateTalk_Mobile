@@ -16,6 +16,7 @@ const API = {
   updateRoom: (roomId, body) =>
     $http.put(parameterToPath(`/rooms/:roomId`, { roomId }), body),
 
+
   /**
    * 채팅방 상세조회
    * --

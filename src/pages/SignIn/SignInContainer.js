@@ -30,10 +30,10 @@ const SignInContainer = () => {
             const userId = loginInfo.id;
             const token = generateToken(userId);
 
-            await setUser({ id: userId });
+            await setUser({ email : userId, id: result.data.user_id});
             await setToken(token);
 
-            Alert.alert('로그인에 성공하셨습니다.')
+            Alert.alert("로그인에 성공하셨습니다");
             navigation.navigate('Main')
         } else {
             Alert.alert('로그인에 실패하셨습니다.')

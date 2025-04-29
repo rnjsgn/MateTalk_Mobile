@@ -19,6 +19,9 @@ export const Input = ({
 
     button,
 
+    value,
+    onSubmitEditing,
+
     onChangeText
 }) => {
 
@@ -108,6 +111,9 @@ export const Input = ({
                     placeholderTextColor={placeholderColor}
 
                     onChangeText={onChangeText}
+
+                    value = {value}
+                    onSubmitEditing = {onSubmitEditing}
                 />
                 {behindIcon && (
                     <Image 

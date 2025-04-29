@@ -11,7 +11,7 @@ export const Channel = ({
     return(
         <View style ={ChannelStyle.container}>
             <View style = {ChannelStyle.title}>
-                <Image 
+                <Image
                     source={require("../../assets/images/Channel.png")}
                     style = {ChannelStyle.icon}
                 />

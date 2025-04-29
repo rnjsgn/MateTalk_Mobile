@@ -19,7 +19,7 @@ const MainContainer = () => {
 
     useEffect(() => {
         if (user) {
-            setName(user.id);
+            setName(user.email);
             navigation.navigate('Main')
         } else {
             setName('사용자'); // 로그아웃 시 기본값으로

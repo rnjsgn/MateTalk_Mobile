@@ -17,6 +17,7 @@ const SignUpContainer = () => {
         pw_check : ''
     })
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const phoneRegex = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/
 
     const signUp = async () => {
@@ -46,6 +47,11 @@ const SignUpContainer = () => {
         if (body.user_account.trim() == '') {
             Alert.alert('ID를 입력해주세요.')
             return
+        }
+
+        if (!emailRegex.test(body.user_account)) {
+            Alert.alert('이메일 형식으로 ID를 입력해주세요.(test@test.com)');
+            return;
         }
 
         if (body.user_pw.trim() == '') {
