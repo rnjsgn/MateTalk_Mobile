@@ -17,12 +17,14 @@ export const PopUp = ({
 
     type
 }) => {
+    // 룸 기본 정보
     const [roomInfo, setRoomInfo] = useState({
         room_name : '',
         room_description : '',
         member : [],
     })
 
+    // ftp 기본 정보
     const [ftpInfo, setFtpInfo] = useState({
         room_storage: false,
         room_ftpid: '',
@@ -35,10 +37,38 @@ export const PopUp = ({
 
     const { user } = useAuthStore();
 
+    // fpt storage 열고 닫는 함수
     const [ftpOpen, setFtpOpen] = useState(false);
 
     const openFtp = () => {
         setFtpOpen(true);
+    }
+
+    const ftpClose = () => {
+        setFtpOpen(false)
+        setFtpInfo({
+            room_storage: false,
+            room_ftpid: '',
+            room_ftppw: '',
+            room_ftpip: '',
+            room_ftppath: '',
+            room_ftpport: '',
+            room_ftptype: '',
+        })
+    }
+
+    const ftpConfirm = () => {
+        if (!ftpInfo.room_ftpid.trim() || !ftpInfo.room_ftppw.trim() || !ftpInfo.room_ftpip.trim()) {
+            Alert.alert('FTP사용 시 입력정보는 필수입니다.')
+            return
+        }
+
+        setFtpInfo(prev => ({
+            ...prev,
+            room_storage: true
+        }));
+
+        setFtpOpen(false)
     }
 
     // 룸 생성시 멤버 초대
@@ -69,18 +99,10 @@ export const PopUp = ({
     // }, [roomInfo.member]);
 
     // 룸 생성
-
     const workspaceCreate = async () => {
-        if (ftpInfo !== null && typeof ftpInfo === 'object') {
-            setFtpInfo(prev => ({
-                ...prev,
-                room_storage: true,
-            }));
-        }
-
         const body = {
             room_name : roomInfo.room_name,
-            room_storage : roomInfo.room_storage,
+            room_storage : ftpInfo.room_storage,
             room_ftpid : ftpInfo.room_ftpid,
             room_ftppw : ftpInfo.room_ftppw,
             room_ftpip : ftpInfo.room_ftpip,
@@ -215,7 +237,8 @@ export const PopUp = ({
                         <FtpPopUp
                             ftpOpen={ftpOpen}
 
-                            ftpClose = {() => setFtpOpen(false)}
+                            ftpClose = {ftpClose}
+                            ftpConfirm = {ftpConfirm}
 
                             setFtpInfo = {setFtpInfo}
                         />

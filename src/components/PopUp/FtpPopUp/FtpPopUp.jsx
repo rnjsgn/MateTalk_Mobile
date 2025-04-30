@@ -9,6 +9,7 @@ import { Colors } from "../../../assets/color/globalStyles";
 export const FtpPopUp = ({
     ftpOpen,
     ftpClose,
+    ftpConfirm,
 
     setFtpInfo
 }) => {
@@ -112,7 +113,7 @@ export const FtpPopUp = ({
                         <Button
                             title={'확인'}
 
-                            onPress={ftpClose}
+                            onPress={ftpConfirm}
 
                             width={'40%'}
                         />
