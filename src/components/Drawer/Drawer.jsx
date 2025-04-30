@@ -71,7 +71,8 @@ export const Drawer = ({
                                 count={12}
                             />
                         </View>
-                        <View>
+                        {/* 구성원 추가 (나중에 다른데로 옮길 예정)*/}
+                        {/* <View>
                             <View style={drawerStyle.title}>
                                 <View style={drawerStyle.members}>
                                     <Image 
@@ -99,7 +100,7 @@ export const Drawer = ({
                                 name = {'앙드레킴'}
                                 status={'away'}
                             />
-                        </View>
+                        </View> */}
                     </>
                     :
                     <View>

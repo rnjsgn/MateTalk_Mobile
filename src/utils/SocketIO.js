@@ -1,7 +1,7 @@
 // socketio.js
 
-import { io } from 'socket.io-client';
-import { SOCKET_URL } from 'utils';
+import { io } from 'socket.io-client'
+import { SOCKET_URL } from './env';
 
 /**
  * [Class] SocketIO

@@ -117,12 +117,12 @@ export const PopUp = ({
         const result = await API.createRoom(body)
 
         if (result.status === 200) {
-            Alert.alert(JSON.stringify(result.data, null, 2))
-            // Alert.alert('방이 생성되었습니다.')
+            // Alert.alert(JSON.stringify(result.data, null, 2))
+            Alert.alert('방이 생성되었습니다.')
         } else {
             Alert.alert('실패')
         }
-    } 
+    }
 
     return(
         <Modal
