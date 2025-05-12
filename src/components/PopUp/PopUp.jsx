@@ -100,6 +100,9 @@ export const PopUp = ({
 
     // 룸 생성
     const workspaceCreate = async () => {
+
+        const updatedMembers = [...roomInfo.member, user.email];
+
         const body = {
             room_name : roomInfo.room_name,
             room_storage : ftpInfo.room_storage,
@@ -110,7 +113,7 @@ export const PopUp = ({
             room_ftpport : ftpInfo.room_ftpport ? ftpInfo.room_ftpport : 21,
             room_ftptype : ftpInfo.room_ftptype ? ftpInfo.room_ftptype : 'ftp',
             room_description : roomInfo.room_description,
-            members : roomInfo.member,
+            members : updatedMembers,
             user_id : user.id,
         }
 
@@ -187,29 +190,26 @@ export const PopUp = ({
                                     )}
                                 />
                             </View>
-                            {/* <Text style = {PopUpStyle.name}>멤버</Text>
-                            <View style = {PopUpStyle.input}>
+                            <Text style = {PopUpStyle.name}>멤버</Text>
+                            {/* <View style = {PopUpStyle.input}>
                                 <Input 
                                     placeholder={'추가할 멤버의 아이디를 입력해주세요.'}
 
                                     width = {'80%'}
-
-                                    value={memberEmail}
-                                    onSubmitEditing = {addMember}
-
-                                    onChangeText={setMemberEmail}
 
                                     borderColor={Colors.sub2}
                                     
                                     placeholderColor={'gray'}
                                     placeholderSize={14}
                                     placeholderWeight={'0'}
+
+                                    // onChangeText={((room_owner_email) =>
+                                    //     setRoomInfo((prev) => ({
+                                    //         ...prev,
+                                    //         room_owner_email : room_owner_email
+                                    //     }))
+                                    // )}
                                 />
-                                {roomInfo.member.map((email, index) => (
-                                    <Text key={index} style={{ fontSize: 12, color: 'gray' }}>
-                                        {index+1}. {email}
-                                    </Text>
-                                ))}
                             </View> */}
                             <View style={PopUpStyle.ftpBox}>
                                 <Text style = {PopUpStyle.name}>외부스토리지 </Text>
