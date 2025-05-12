@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Image, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 import { Colors } from "../../assets/color/globalStyles";
+import { API } from "../../api";
 
 import { Input } from "../Input/Input";
 import { Channel } from "../Channel/Channel";
@@ -17,6 +18,7 @@ export const Drawer = ({
 }) => {
     const [popOpen, setPopOpen] = useState(false);
     const [popUpType, setPopUpType] = useState('');
+    const [roomNum, setRoomNum] = useState(0);
 
     const openPopUp = (type) => {
         setPopOpen(true);
@@ -25,13 +27,41 @@ export const Drawer = ({
 
     const { user } = useAuthStore();
 
+    // const workspaceCreate = async () => {
+    //         const body = {
+    //             room_name : roomInfo.room_name,
+    //             room_storage : ftpInfo.room_storage,
+    //             room_ftpid : ftpInfo.room_ftpid,
+    //             room_ftppw : ftpInfo.room_ftppw,
+    //             room_ftpip : ftpInfo.room_ftpip,
+    //             room_ftppath : ftpInfo.room_ftppath ? ftpInfo.room_ftppath : '/',
+    //             room_ftpport : ftpInfo.room_ftpport ? ftpInfo.room_ftpport : 21,
+    //             room_ftptype : ftpInfo.room_ftptype ? ftpInfo.room_ftptype : 'ftp',
+    //             room_description : roomInfo.room_description,
+    //             members : roomInfo.member,
+    //             user_id : user.id,
+    //         }
+    
+    //         const result = await API.createRoom(body)
+    
+    //         if (result.status === 200) {
+    //             // Alert.alert(JSON.stringify(result.data, null, 2))
+    //             Alert.alert('방이 생성되었습니다.')
+    //         } else {
+    //             Alert.alert('실패')
+    //         }
+    //     }
+
+    
+    
+
     // const getRoomList = useCallback(() => {
     //     sock
     // })
 
     return isOpen ? (
         <View style={drawerStyle.overlay}>
-            <TouchableWithoutFeedback onPress={onClose}>
+            <TouchableWithoutFeedback onPress={onClose} >
                 <View style={{ flex: 1 }} />
             </TouchableWithoutFeedback>
 
@@ -63,12 +93,12 @@ export const Drawer = ({
                             <Channel 
                                 name={'IMPL'}
 
-                                count={5}
+                                count={roomNum}
                             />
                             <Channel 
                                 name={'IMPL 대학원생'}
 
-                                count={12}
+                                count={roomNum}
                             />
                         </View>
                         {/* 구성원 추가 (나중에 다른데로 옮길 예정)*/}

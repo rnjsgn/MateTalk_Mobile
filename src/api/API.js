@@ -9,6 +9,7 @@ const API = {
    * --
    */
   createRoom: (body) => $http.post(`/rooms`, body),
+
   /**
    * 채팅방 수정
    * --
@@ -140,7 +141,7 @@ const API = {
    */
   CreateDevice: (data) => $http.post('/device', data),
   /**
-   * 디바이스 토큰 조회
+   * 디바이스 토큰 조회
    * --
    */
   GetDevice: (data) => $http.post('/device-token', data),

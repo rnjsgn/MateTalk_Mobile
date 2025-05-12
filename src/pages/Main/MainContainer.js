@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { MainPresenter } from "./MainPresenter";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthStore } from "../../store/authStore";
 import { Alert } from "react-native";
+
+import SocketManager from "../../socket/SocketManager";
 
 const MainContainer = () => {
     const navigation = useNavigation();
@@ -11,6 +13,10 @@ const MainContainer = () => {
     const { user, signOut } = useAuthStore();
 
     const [name, setName] = useState('사용자')
+    
+    //
+    const [rName] = useState('Derek');
+    const [roomList, setRoomList] = useState([]);
 
     const logout = async () => {
         await signOut();
@@ -21,10 +27,89 @@ const MainContainer = () => {
         if (user) {
             setName(user.email);
             navigation.navigate('Main')
+
+            //소켓
+            let socketManager = new SocketManager(user.id);
+            let socket = socketManager.getSocket();
+            
+            console.log("소켓: " + socket)
+            if(socket) {
+                console.log(user.id)
+                // socket.on('RoomList', (data) => {
+                //     setRoomList(data);
+                //     console.log("방 조회: " + data);
+                // })
+
+                socket.on('RoomList', (data, key) => {
+                    console.log("RoomList typeof:", typeof data);
+                    console.log("RoomList isArray:", Array.isArray(data));
+                    console.log("RoomList data:", data);
+                    setRoomList(data);
+                  });
+                  
+    
+                // ✅ 소켓 연결 완료 후 emit
+                socket.on('connect', () => {
+                    console.log('소켓 연결됨');
+                    socket.emit('RoomList', user.id, rName);
+                });
+                
+                // const call = () => {
+                //     socket.on('RoomList', (data) => {
+                //         setRoomList(data);
+    
+                //         console.log("방 조회: " + roomList);
+                //     })
+                // }
+    
+                // if(socket) {
+                //     call();
+                //     handleGetRoomList();
+                // }
+                return () => {
+                    if(socket === null || socket.connected === null) {
+                        return;
+                    }
+                    socket.disconnect();
+                    socket = undefined;
+                }
+            }
+            
         } else {
             setName('사용자'); // 로그아웃 시 기본값으로
         }
+        
+       
     }, [user]);
+
+    //ljw
+    // const handleGetRoomList = useCallback(() => {
+    //     socket.emit('RoomList', user.id, rName);
+    // },[rName])
+
+    //ljw
+    // useEffect(() => {
+    //     const call = () => {
+    //         socket.on('RoomList', (data) => {
+    //             setRoomList(data);
+
+    //             console.log("방 조회: " + roomList);
+    //         })
+    //     }
+
+    //     if(socket) {
+    //         call();
+    //         handleGetRoomList();
+    //     }
+
+    //     return () => {
+    //         if(socket == null || socket.connected == null) {
+    //             return;
+    //         }
+    //         socket.disconnect();
+    //         socket = undefined;
+    //     }
+    // }, [handleGetRoomList])
 
     return(
         <MainPresenter
@@ -34,8 +119,13 @@ const MainContainer = () => {
             name = {name}
 
             logout = {logout}
+            
+            roomList = {roomList}
         />
     )
 }
+
+
+
 
 export default MainContainer;

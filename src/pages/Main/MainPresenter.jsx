@@ -9,7 +9,9 @@ export const MainPresenter = ({
     user,
     name,
 
-    logout
+    logout,
+
+    roomList
 }) => {
     return(
         <TopNav>
@@ -21,11 +23,19 @@ export const MainPresenter = ({
                 <>
                     <Button title="로그아웃" onPress={logout}/>
                     <Button title="채팅으로 이동" onPress={() => navigation.navigate('Chat')} />
+                    {
+                        roomList.map((data, idx) => {
+                            return(
+                                <Text>{JSON.stringify(data)}</Text>
+                            )
+                        })
+                    }
                 </>
                 :
                 <>
                     <Button title="회원가입" onPress={() => navigation.navigate('SignUp')} />
                     <Button title="로그인" onPress={() => navigation.navigate('SignIn')} />
+                    
                 </>
             }
         </TopNav>
