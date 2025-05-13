@@ -6,7 +6,9 @@ import { Drawer } from "../Drawer/Drawer";
 export const TopNav = ({
     children,
 
-    roomList
+    roomList,
+
+    navigation
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -51,6 +53,8 @@ export const TopNav = ({
                 onClose = {onClose}
             
                 roomList = {roomList}
+
+                navigation = {navigation}
             />
             {children}
         </>

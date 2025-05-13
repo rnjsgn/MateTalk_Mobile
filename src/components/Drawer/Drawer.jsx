@@ -16,7 +16,9 @@ export const Drawer = ({
     isOpen,
     onClose,
 
-    roomList
+    roomList,
+
+    navigation
 }) => {
     const [popOpen, setPopOpen] = useState(false);
     const [popUpType, setPopUpType] = useState('');
@@ -93,10 +95,16 @@ export const Drawer = ({
                             </View>
                             {
                                 roomList.map((data, idx) => (
-                                    <Channel
+                                    <TouchableOpacity
                                         key={idx}
-                                        name={data?.room_name}
-                                    />
+                                    >
+                                        <Channel
+                                            key={idx}
+                                            name={data?.room_name}
+
+                                            navigation = {navigation}
+                                        />
+                                    </TouchableOpacity>
                                 ))
                             }
                         </View>

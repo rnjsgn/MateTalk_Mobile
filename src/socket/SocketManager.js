@@ -27,9 +27,11 @@ class SocketManager {
 
   disconnect() {
     if (this.socket) {
-      this.socket.disconnect();
-      SocketManager.instance = null;
+      this.socket.removeAllListeners(); // 이벤트 리스너 정리
+      this.socket.disconnect(); // 연결 해제
+      this.socket = null;
     }
+    SocketManager.instance = null;
   }
 }
 

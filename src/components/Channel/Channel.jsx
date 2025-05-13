@@ -5,6 +5,8 @@ import { ChannelStyle } from "./ChannelStyle";
 
 export const Channel = ({
     name,
+
+    navigation
 }) => {
     return(
         <View style ={ChannelStyle.container}>

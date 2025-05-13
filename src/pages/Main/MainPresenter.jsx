@@ -16,6 +16,8 @@ export const MainPresenter = ({
     return(
         <TopNav
             roomList = {roomList}
+
+            navigation = {navigation}
         >
             <Text>메인 페이지</Text>
             <Text>{name}님 반갑습니다.</Text>
