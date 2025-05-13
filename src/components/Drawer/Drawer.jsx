@@ -14,11 +14,12 @@ import { useAuthStore } from "../../store/authStore";
 
 export const Drawer = ({
     isOpen,
-    onClose
+    onClose,
+
+    roomList
 }) => {
     const [popOpen, setPopOpen] = useState(false);
     const [popUpType, setPopUpType] = useState('');
-    const [roomNum, setRoomNum] = useState(0);
 
     const openPopUp = (type) => {
         setPopOpen(true);
@@ -90,16 +91,14 @@ export const Drawer = ({
                                     />
                                 </TouchableOpacity>
                             </View>
-                            <Channel 
-                                name={'IMPL'}
-
-                                count={roomNum}
-                            />
-                            <Channel 
-                                name={'IMPL 대학원생'}
-
-                                count={roomNum}
-                            />
+                            {
+                                roomList.map((data, idx) => (
+                                    <Channel
+                                        key={idx}
+                                        name={data?.room_name}
+                                    />
+                                ))
+                            }
                         </View>
                         {/* 구성원 추가 (나중에 다른데로 옮길 예정)*/}
                         {/* <View>

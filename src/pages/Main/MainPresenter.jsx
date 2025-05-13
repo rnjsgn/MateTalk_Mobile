@@ -14,7 +14,9 @@ export const MainPresenter = ({
     roomList
 }) => {
     return(
-        <TopNav>
+        <TopNav
+            roomList = {roomList}
+        >
             <Text>메인 페이지</Text>
             <Text>{name}님 반갑습니다.</Text>
             {
@@ -23,13 +25,6 @@ export const MainPresenter = ({
                 <>
                     <Button title="로그아웃" onPress={logout}/>
                     <Button title="채팅으로 이동" onPress={() => navigation.navigate('Chat')} />
-                    {
-                        roomList.map((data, idx) => {
-                            return(
-                                <Text>{JSON.stringify(data)}</Text>
-                            )
-                        })
-                    }
                 </>
                 :
                 <>

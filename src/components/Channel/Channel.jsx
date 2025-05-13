@@ -5,8 +5,6 @@ import { ChannelStyle } from "./ChannelStyle";
 
 export const Channel = ({
     name,
-
-    count
 }) => {
     return(
         <View style ={ChannelStyle.container}>
@@ -17,7 +15,7 @@ export const Channel = ({
                 />
                 <Text style = {ChannelStyle.name}>{name}</Text>
             </View>
-            <Text style = {ChannelStyle.count}>{count}</Text>
+            <Text style = {ChannelStyle.count}>2</Text>
         </View>
     )
 }

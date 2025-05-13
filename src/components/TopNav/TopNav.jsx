@@ -4,7 +4,9 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Drawer } from "../Drawer/Drawer";
 
 export const TopNav = ({
-    children
+    children,
+
+    roomList
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -46,8 +48,9 @@ export const TopNav = ({
             </View>
             <Drawer
                 isOpen = {isOpen}
-
                 onClose = {onClose}
+            
+                roomList = {roomList}
             />
             {children}
         </>

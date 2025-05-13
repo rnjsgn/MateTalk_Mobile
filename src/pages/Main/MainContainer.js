@@ -14,14 +14,14 @@ const MainContainer = () => {
 
     const [name, setName] = useState('사용자')
     
-    //
-    const [rName] = useState('Derek');
-    const [roomList, setRoomList] = useState([]);
-
     const logout = async () => {
         await signOut();
         Alert.alert('로그아웃 되셨습니다')
     }
+
+    //socket
+    const [rName] = useState('Derek');
+    const [roomList, setRoomList] = useState([]);
 
     useEffect(() => {
         if (user) {
