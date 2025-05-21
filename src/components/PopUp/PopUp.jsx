@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Alert, Modal, Pressable, Switch, Text, View } from "react-native";
 
 import { Colors } from "../../assets/color/globalStyles";
@@ -73,30 +73,53 @@ export const PopUp = ({
 
     // 룸 생성시 멤버 초대
 
-    // const [memberEmail, setMemberEmail] = useState('');
+    const [memberEmail, setMemberEmail] = useState('');
 
-    // const addMember = () => {
-    //     if (memberEmail.trim() === '') return;
+    const addMember = () => {
+    const email = memberEmail.trim();
+    if (!email) return;
 
-    //     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(memberEmail)) {
-    //         Alert.alert('이메일 형식을 지켜주세요.');
-    //         return;
-    //     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            Alert.alert('이메일 형식을 지켜주세요.');
+            return;
+        }
 
-    //     setRoomInfo(prev => ({
-    //         ...prev,
-    //         member: [...prev.member, memberEmail.trim()]
-    //     }));
+        setRoomInfo((prev) => ({
+            ...prev,
+            member: [...prev.member, email]
+        }));
+        console.log(roomInfo.member)
+        setMemberEmail('');
+    };
 
-    //     setMemberEmail('')
-    // }
+    const removeMember = (index) => {
+        setRoomInfo((prev) => {
+            const newMembers = [...prev.member];
+            newMembers.splice(index, 1);
+            return { ...prev, member: newMembers };
+        });
+    };
 
+    // 이메일 리스트 출력 useMemo
+    const renderedMembers = useMemo(() => {
+        return roomInfo.member.map((email, index) => (
+            <View key={index} style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 3 }}>
+                <Text style={{ color: 'black' }}>{email}</Text>
+                {/* {
+                    console.log(email)
+                } */}
+                <Pressable onPress={() => removeMember(index)}>
+                    <Text style={{ color: 'red', fontWeight: 'bold' }}>삭제</Text>
+                </Pressable>
+            </View>
+        ));
+    }, [roomInfo.member]);
+
+    // // 상태 변경 확인용 로그
     // useEffect(() => {
-    //     if (roomInfo.member.length > 0) {
-    //         const lastEmail = roomInfo.member[roomInfo.member.length - 1];
-    //         setMemberEmail(lastEmail);
-    //     }
+    //     console.log('현재 멤버 리스트:', roomInfo.member);
     // }, [roomInfo.member]);
+
 
     // 룸 생성
     const workspaceCreate = async () => {
@@ -191,26 +214,26 @@ export const PopUp = ({
                                 />
                             </View>
                             <Text style = {PopUpStyle.name}>멤버</Text>
-                            {/* <View style = {PopUpStyle.input}>
+                            <View style = {PopUpStyle.input}>
                                 <Input 
-                                    placeholder={'추가할 멤버의 아이디를 입력해주세요.'}
+                                    placeholder={'초대할 멤버 이메일을 입력하세요'}
 
-                                    width = {'80%'}
+                                    width={'80%'}
 
                                     borderColor={Colors.sub2}
-                                    
+
                                     placeholderColor={'gray'}
                                     placeholderSize={14}
-                                    placeholderWeight={'0'}
 
-                                    // onChangeText={((room_owner_email) =>
-                                    //     setRoomInfo((prev) => ({
-                                    //         ...prev,
-                                    //         room_owner_email : room_owner_email
-                                    //     }))
-                                    // )}
+                                    value={memberEmail}
+                                    onChangeText={setMemberEmail}
+
+                                    onSubmitEditing={addMember} // Enter key
                                 />
-                            </View> */}
+                            </View>
+                            <View style={{ marginVertical: 10 }}>
+                                {renderedMembers}
+                            </View>
                             <View style={PopUpStyle.ftpBox}>
                                 <Text style = {PopUpStyle.name}>외부스토리지 </Text>
                                 <Switch 

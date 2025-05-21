@@ -30,38 +30,6 @@ export const Drawer = ({
 
     const { user } = useAuthStore();
 
-    // const workspaceCreate = async () => {
-    //         const body = {
-    //             room_name : roomInfo.room_name,
-    //             room_storage : ftpInfo.room_storage,
-    //             room_ftpid : ftpInfo.room_ftpid,
-    //             room_ftppw : ftpInfo.room_ftppw,
-    //             room_ftpip : ftpInfo.room_ftpip,
-    //             room_ftppath : ftpInfo.room_ftppath ? ftpInfo.room_ftppath : '/',
-    //             room_ftpport : ftpInfo.room_ftpport ? ftpInfo.room_ftpport : 21,
-    //             room_ftptype : ftpInfo.room_ftptype ? ftpInfo.room_ftptype : 'ftp',
-    //             room_description : roomInfo.room_description,
-    //             members : roomInfo.member,
-    //             user_id : user.id,
-    //         }
-    
-    //         const result = await API.createRoom(body)
-    
-    //         if (result.status === 200) {
-    //             // Alert.alert(JSON.stringify(result.data, null, 2))
-    //             Alert.alert('방이 생성되었습니다.')
-    //         } else {
-    //             Alert.alert('실패')
-    //         }
-    //     }
-
-    
-    
-
-    // const getRoomList = useCallback(() => {
-    //     sock
-    // })
-
     return isOpen ? (
         <View style={drawerStyle.overlay}>
             <TouchableWithoutFeedback onPress={onClose} >
@@ -97,6 +65,8 @@ export const Drawer = ({
                                 roomList.map((data, idx) => (
                                     <TouchableOpacity
                                         key={idx}
+
+                                        onPress={() => navigation.navigate('Chat')}
                                     >
                                         <Channel
                                             key={idx}
