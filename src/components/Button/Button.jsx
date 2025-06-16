@@ -10,6 +10,8 @@ export const Button = ({
     width,
     height,
 
+    backgroundColor,
+
     borderColor,
     borderWidth,
 
@@ -25,7 +27,7 @@ export const Button = ({
             width: width,
             height: height,
 
-            backgroundColor: Colors.sub2,
+            backgroundColor: backgroundColor ? backgroundColor : Colors.sub2,
 
             borderColor: borderColor,
             borderWidth: borderWidth,

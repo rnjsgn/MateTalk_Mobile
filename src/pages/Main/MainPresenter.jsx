@@ -27,6 +27,7 @@ export const MainPresenter = ({
                 <>
                     <Button title="로그아웃" onPress={logout}/>
                     <Button title="채팅으로 이동" onPress={() => navigation.navigate('Chat')} />
+                    <Button title="초대목록으로 이동" onPress={() => navigation.navigate('InviteList')} />
                 </>
                 :
                 <>
