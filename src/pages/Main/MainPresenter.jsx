@@ -11,11 +11,11 @@ export const MainPresenter = ({
 
     logout,
 
-    roomList
+    // roomList
 }) => {
     return(
         <TopNav
-            roomList = {roomList}
+            // roomList = {roomList}
 
             navigation = {navigation}
         >

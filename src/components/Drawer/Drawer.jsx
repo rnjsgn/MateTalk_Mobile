@@ -11,6 +11,7 @@ import { PopUp } from "../PopUp/PopUp";
 
 import { drawerStyle } from "./DrawerStyle";
 import { useAuthStore } from "../../store/authStore";
+import { useNavigation } from "@react-navigation/native";
 
 export const Drawer = ({
     isOpen,
@@ -18,10 +19,12 @@ export const Drawer = ({
 
     roomList,
 
-    navigation
+    // navigation
 }) => {
     const [popOpen, setPopOpen] = useState(false);
     const [popUpType, setPopUpType] = useState('');
+    const navigation = useNavigation();
+
 
     const openPopUp = (type) => {
         setPopOpen(true);

@@ -26,41 +26,41 @@ const MainContainer = () => {
         Alert.alert('로그아웃 되셨습니다')
     }
 
-    //socket
-    const [rName] = useState('Derek');
-    const [roomList, setRoomList] = useState([]);
+    // //socket - 1
+    // const [rName] = useState('Derek');
+    // const [roomList, setRoomList] = useState([]);
 
-    useEffect(() => {
-      if (!user) {
-        setName("사용자");
-        return;
-      }
-      setName(user.email);
-      navigation.navigate("Main");
+    // useEffect(() => {
+    //   if (!user) {
+    //     setName("사용자");
+    //     return;
+    //   }
+    //   setName(user.email);
+    //   navigation.navigate("Main");
 
-      // 새 소켓 매니저 생성 (이전 인스턴스 초기화)
-      SocketManager.instance = null;
-      const socketManager = new SocketManager(user.id);
-      const socket = socketManager.getSocket();
-      setSocketInstance(socket);
+    //   // 새 소켓 매니저 생성 (이전 인스턴스 초기화)
+    //   SocketManager.instance = null;
+    //   const socketManager = new SocketManager(user.id);
+    //   const socket = socketManager.getSocket();
+    //   setSocketInstance(socket);
 
-      // RoomList 이벤트 핸들러
-      onRoomList((rooms) => {
-        console.log("[Main] RoomList 수신:", rooms);
-        setRoomList(rooms);
-      });
+    //   // RoomList 이벤트 핸들러
+    //   onRoomList((rooms) => {
+    //     console.log("[Main] RoomList 수신:", rooms);
+    //     setRoomList(rooms);
+    //   });
 
-      // 연결 시 RoomList 요청
-      socket.on("connect", () => {
-        console.log("[Main] 소켓 연결됨");
-        emitRoomList(user.id, rName);
-      });
+    //   // 연결 시 RoomList 요청
+    //   socket.on("connect", () => {
+    //     console.log("[Main] 소켓 연결됨");
+    //     emitRoomList(user.id, rName);
+    //   });
 
-      return () => {
-        offRoomList();
-        socketManager.disconnect();
-      };
-    }, [user]);
+    //   return () => {
+    //     offRoomList();
+    //     socketManager.disconnect();
+    //   };
+    // }, [user]);
 
     // useEffect(() => {
     //     if (user) {
@@ -198,7 +198,7 @@ const MainContainer = () => {
 
             logout = {logout}
             
-            roomList = {roomList}
+            // roomList = {roomList}
         />
     )
 }
