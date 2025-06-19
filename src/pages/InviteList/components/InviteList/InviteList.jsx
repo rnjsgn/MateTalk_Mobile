@@ -15,12 +15,12 @@ export const InviteList = ({
             >초대 목록</Text>
             {
                 inviteList
-                .filter(invite => invite.invite_access === false)
+                .filter(invite => invite?.invite_access === false)
                 .map((invite, key) => (
                     <InviteListBox
                         key={key}
-                        name={invite.room.room_name}
-                        invite_id={invite.invite_id}
+                        name={invite?.room.room_name}
+                        invite_id={invite?.invite_id}
                         InviteAccess={InviteAccess}
                     />
                 ))
