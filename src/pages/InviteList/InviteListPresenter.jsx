@@ -4,12 +4,18 @@ import { Button, Text, View } from "react-native";
 import { InviteList } from "./components/InviteList/InviteList";
 
 export const InviteListPresenter = ({
-    navigation
+    navigation,
+
+    inviteList,
+    InviteAccess
 }) => {
     return(
         <View>
             <Button title="메인으로 이동" onPress={() => navigation.navigate('Main')}/>
-            <InviteList />
+            <InviteList
+                inviteList = {inviteList}
+                InviteAccess = {InviteAccess}
+            />
         </View>
     )
 }

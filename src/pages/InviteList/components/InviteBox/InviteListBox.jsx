@@ -3,12 +3,17 @@ import { Text, View } from "react-native";
 import { Button } from "../../../../components/Button/Button";
 import { InviteListBoxStyle } from "./InviteListBoxStyle";
 
-export const InviteListBox = () => {
+export const InviteListBox = ({
+    name,
+    
+    InviteAccess,
+    invite_id
+}) => {
     return(
         <View style = {InviteListBoxStyle.container}>
             <View style = {InviteListBoxStyle.titleBox}>
                 <Text style = {InviteListBoxStyle.title}>방 이름</Text>
-                <Text style = {InviteListBoxStyle.inviteName}>12312312323</Text>
+                <Text style = {InviteListBoxStyle.inviteName}>{name}</Text>
             </View>
             <View style = {InviteListBoxStyle.buttonBox}>
                 <Button
@@ -16,6 +21,8 @@ export const InviteListBox = () => {
                     height={30}
 
                     title = {'수락'}
+
+                    onPress={() => InviteAccess(invite_id)}
                 />
                 <Button
                     width={'40%'}
