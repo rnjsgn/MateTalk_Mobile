@@ -4,7 +4,12 @@ import { MainPresenter } from "./MainPresenter";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthStore } from "../../store/authStore";
 import { Alert } from "react-native";
-
+import {
+  setSocketInstance,
+  emitRoomList,
+  onRoomList,
+  offRoomList,
+} from "../../socket/socketApi";
 import SocketManager from "../../socket/SocketManager";
 
 const MainContainer = () => {
@@ -16,12 +21,46 @@ const MainContainer = () => {
     
     const logout = async () => {
         await signOut();
+        const sm = new SocketManager();
+        sm.disconnect();
         Alert.alert('로그아웃 되셨습니다')
     }
 
-    //socket
-    const [rName] = useState('Derek');
-    const [roomList, setRoomList] = useState([]);
+    // //socket - 1
+    // const [rName] = useState('Derek');
+    // const [roomList, setRoomList] = useState([]);
+
+    // useEffect(() => {
+    //   if (!user) {
+    //     setName("사용자");
+    //     return;
+    //   }
+    //   setName(user.email);
+    //   navigation.navigate("Main");
+
+    //   // 새 소켓 매니저 생성 (이전 인스턴스 초기화)
+    //   SocketManager.instance = null;
+    //   const socketManager = new SocketManager(user.id);
+    //   const socket = socketManager.getSocket();
+    //   setSocketInstance(socket);
+
+    //   // RoomList 이벤트 핸들러
+    //   onRoomList((rooms) => {
+    //     console.log("[Main] RoomList 수신:", rooms);
+    //     setRoomList(rooms);
+    //   });
+
+    //   // 연결 시 RoomList 요청
+    //   socket.on("connect", () => {
+    //     console.log("[Main] 소켓 연결됨");
+    //     emitRoomList(user.id, rName);
+    //   });
+
+    //   return () => {
+    //     offRoomList();
+    //     socketManager.disconnect();
+    //   };
+    // }, [user]);
 
     // useEffect(() => {
     //     if (user) {
@@ -82,41 +121,44 @@ const MainContainer = () => {
        
     // }, [user]);
 
-    useEffect(() => {
-        if (user) {
-          setName(user.email);
-          navigation.navigate('Main');
+    // useEffect(() => {
+    //     if (user) {
+    //       setName(user.email);
+    //       navigation.navigate('Main');
       
-          // ✅ 이전 소켓 인스턴스를 명시적으로 제거
-          SocketManager.instance = null;
+    //       // ✅ 이전 소켓 인스턴스를 명시적으로 제거
+    //       SocketManager.instance = null;
       
-          const socketManager = new SocketManager(user.id);
-          const socket = socketManager.getSocket();
+    //       const socketManager = new SocketManager(user.id);
+    //       const socket = socketManager.getSocket();
       
-          if (socket) {
-            // ✅ 이벤트 먼저 등록
-            socket.on('RoomList', (data) => {
-              console.log("RoomList typeof:", typeof data);
-              console.log("RoomList isArray:", Array.isArray(data));
-              console.log("RoomList data:", data);
-              setRoomList(data);
-            });
+    //       if (socket) {
+    //         // ✅ 이벤트 먼저 등록
+    //         socket.on('RoomList', (data) => {
+    //           console.log("RoomList typeof:", typeof data);
+    //           console.log("RoomList isArray:", Array.isArray(data));
+    //           console.log("RoomList data:", data);
+    //           setRoomList(data);
+    //         });
       
-            socket.on('connect', () => {
-              console.log('소켓 연결됨');
-              // ✅ 이벤트 등록 후 emit
-              socket.emit('RoomList', user.id, rName);
-            });
+    //         socket.on('connect', () => {
+    //           console.log('소켓 연결됨');
+    //           // ✅ 이벤트 등록 후 emit
+    //           socket.emit('RoomList', user.id, rName);
+    //         });
       
-            return () => {
-              socketManager.disconnect(); // ✅ 깔끔한 정리
-            };
-          }
-        } else {
-          setName('사용자'); // 로그아웃 시 기본값
-        }
-      }, [user]);
+    //         return () => {
+    //           socketManager.disconnect(); // ✅ 깔끔한 정리
+    //         };
+    //       }
+    //     } else {
+    //       setName('사용자'); // 로그아웃 시 기본값
+    //     }
+    //   }, [user]);
       
+
+
+
 
     //ljw
     // const handleGetRoomList = useCallback(() => {
@@ -156,7 +198,7 @@ const MainContainer = () => {
 
             logout = {logout}
             
-            roomList = {roomList}
+            // roomList = {roomList}
         />
     )
 }
