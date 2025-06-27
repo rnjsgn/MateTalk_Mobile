@@ -6,10 +6,10 @@ import { ChatBottom } from "../ChatBottom/ChatBottom";
 import { ChatBoxStyle } from "./ChatBoxStyle";
 import { ChatHistory } from "../ChatHistory/ChatHistory";
 
-export const ChatBox = () => {
+export const ChatBox = ({roomId, chats}) => {
     return(
         <View style = {ChatBoxStyle.container}>
-            <ChatHistory />
+            <ChatHistory chats={chats} roomId={roomId}/>
             <View style = {ChatBoxStyle.keyboard}>
                 <ChatBottom />
             </View>

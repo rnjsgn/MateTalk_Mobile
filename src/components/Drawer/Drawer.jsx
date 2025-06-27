@@ -69,7 +69,7 @@ export const Drawer = ({
                                     <TouchableOpacity
                                         key={idx}
 
-                                        onPress={() => navigation.navigate('Chat')}
+                                        onPress={() => navigation.navigate('Chat', {roomId: data.room_id})}
                                     >
                                         <Channel
                                             key={idx}

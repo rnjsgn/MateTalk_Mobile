@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ChatPresenter } from "./ChatPresenter";
+import { API } from "../../api";
 
-const ChatContainer = () => {
+const ChatContainer = ({ route }) => {
+    const { roomId } = route.params;
+    const [chats, setChats] = useState([]);
+
+useEffect(() => {
+  (async () => {
+    try {
+      const response = await API.getChats(roomId);
+      const chatData = response.data;
+
+
+      console.log('API로 받아온 채팅들:', chatData);
+
+      setChats(chatData);
+    } catch (err) {
+      console.error(err);
+    }
+  })();
+}, [roomId]);
+
     return(
-        <ChatPresenter />
+        <ChatPresenter chats={chats} roomId={roomId}/>
     )
 }
 
