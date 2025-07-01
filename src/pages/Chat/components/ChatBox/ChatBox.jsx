@@ -20,7 +20,7 @@ export const ChatBox = ({roomId, chats, roomInfo}) => {
             </View>
             <ChatHistory chats={chats} roomId={roomId} roomInfo = {roomInfo}/>
             <View style = {ChatBoxStyle.keyboard}>
-                <ChatBottom />
+                <ChatBottom roomId={roomId}/>
             </View>
         </View>
     )
