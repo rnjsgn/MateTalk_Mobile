@@ -5,6 +5,12 @@ export const ChatBoxStyle = StyleSheet.create({
         height : '100%'
     },
 
+    roominfo : {
+        flexDirection : 'row',
+
+        justifyContent : 'space-between'
+    },
+
     keyboard : {
         width : '100%',
 

@@ -5,17 +5,23 @@ import { API } from "../../api";
 const ChatContainer = ({ route }) => {
     const { roomId } = route.params;
     const [chats, setChats] = useState([]);
+    const [roomInfo, setRoomInfo] = useState([]);
 
 useEffect(() => {
-  (async () => {
+  (
+    async () => {
     try {
       const response = await API.getChats(roomId);
-      const chatData = response.data;
+      const result = await API.getRoom(roomId);
 
+      const chatData = response.data;
+      const roomData = result.data;
 
       console.log('API로 받아온 채팅들:', chatData);
+      console.log('API로 받아온 방정보:', roomData);
 
       setChats(chatData);
+      setRoomInfo(roomData)
     } catch (err) {
       console.error(err);
     }
@@ -23,7 +29,11 @@ useEffect(() => {
 }, [roomId]);
 
     return(
-        <ChatPresenter chats={chats} roomId={roomId}/>
+        <ChatPresenter 
+          chats={chats}
+          roomInfo = {roomInfo}
+          roomId={roomId}
+        />
     )
 }
 
