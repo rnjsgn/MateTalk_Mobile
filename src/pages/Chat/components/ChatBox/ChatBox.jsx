@@ -6,7 +6,7 @@ import { ChatBottom } from "../ChatBottom/ChatBottom";
 import { ChatBoxStyle } from "./ChatBoxStyle";
 import { ChatHistory } from "../ChatHistory/ChatHistory";
 
-export const ChatBox = ({roomId, chats, roomInfo}) => {
+export const ChatBox = ({roomId, chats, roomInfo, onMessageSent, onFileSent}) => {
     return(
         <View style = {ChatBoxStyle.container}>
             <View style = {ChatBoxStyle.roominfo}>
@@ -18,9 +18,11 @@ export const ChatBox = ({roomId, chats, roomInfo}) => {
                     ))
                 } */}
             </View>
-            <ChatHistory chats={chats} roomId={roomId} roomInfo = {roomInfo}/>
+            <View style={ChatBoxStyle.chatHistoryContainer}>
+                <ChatHistory chats={chats} roomId={roomId} roomInfo = {roomInfo}/>
+            </View>
             <View style = {ChatBoxStyle.keyboard}>
-                <ChatBottom roomId={roomId}/>
+                <ChatBottom roomId={roomId} onMessageSent={onMessageSent} onFileSent={onFileSent}/>
             </View>
         </View>
     )

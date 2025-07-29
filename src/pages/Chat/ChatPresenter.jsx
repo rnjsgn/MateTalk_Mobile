@@ -7,11 +7,13 @@ import { Text, View } from "react-native";
 export const ChatPresenter = ({
     chats, 
     roomId,
-    roomInfo
+    roomInfo,
+    onMessageSent,
+    onFileSent
 }) => {
     return(
         <TopNav>
-            <ChatBox chats={chats} roomId={roomId} roomInfo = {roomInfo}/>
+            <ChatBox chats={chats} roomId={roomId} roomInfo = {roomInfo} onMessageSent={onMessageSent} onFileSent={onFileSent}/>
         </TopNav>
     )
 }

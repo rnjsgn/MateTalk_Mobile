@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, Image, Alert } from "react-native";
 import { Colors } from "../../assets/color/globalStyles";
 
 export const Input = ({
@@ -22,7 +22,8 @@ export const Input = ({
     value,
     onSubmitEditing,
 
-    onChangeText
+    onChangeText,
+    onFileSelect
 }) => {
 
     const InputStyle = StyleSheet.create({
@@ -93,16 +94,24 @@ export const Input = ({
         },
     })
 
+    const handleIconPress = () => {
+        if (onFileSelect) {
+            onFileSelect();
+        }
+    };
+
     return(
         <View
             style = {InputStyle.container}
         >
             <View style={InputStyle.inputContainer}>
                 {icon && (
-                    <Image 
-                        source={icon} 
-                        style={InputStyle.icon}
-                    />
+                    <TouchableOpacity onPress={handleIconPress}>
+                        <Image 
+                            source={icon} 
+                            style={InputStyle.icon}
+                        />
+                    </TouchableOpacity>
                 )}
                 <TextInput
                     style={InputStyle.input}

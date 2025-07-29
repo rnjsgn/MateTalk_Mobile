@@ -17,5 +17,38 @@ export const ChatBottomStyle = StyleSheet.create({
 
     wrap : {
         width : '95%',
+    },
+
+    fileInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: Colors.sub4,
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: Colors.sub3,
+    },
+
+    fileName: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: Colors.sub1,
+        flex: 1,
+    },
+
+    sendButton: {
+        backgroundColor: Colors.primary,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginLeft: 10,
+    },
+
+    sendButtonText: {
+        color: Colors.sub4,
+        fontSize: 12,
+        fontWeight: 'bold',
     }
 })

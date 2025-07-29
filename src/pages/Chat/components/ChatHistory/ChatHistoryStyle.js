@@ -2,8 +2,13 @@ import { StyleSheet } from "react-native";
 import { Colors } from "../../../../assets/color/globalStyles";
 
 export const ChatHistoryStyle = StyleSheet.create({
+    scrollContainer: {
+        flex: 1,
+    },
+
     container : {
         padding : 20,
+        flexGrow: 1,
     },
 
     other : {
