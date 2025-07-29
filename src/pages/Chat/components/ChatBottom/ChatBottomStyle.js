@@ -46,6 +46,11 @@ export const ChatBottomStyle = StyleSheet.create({
         marginLeft: 10,
     },
 
+    sendButtonDisabled: {
+        backgroundColor: Colors.sub3,
+        opacity: 0.6,
+    },
+
     sendButtonText: {
         color: Colors.sub4,
         fontSize: 12,

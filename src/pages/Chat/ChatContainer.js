@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { ChatPresenter } from "./ChatPresenter";
 import { API } from "../../api";
 import { useAuthStore } from "../../store/authStore";
@@ -72,6 +73,37 @@ const ChatContainer = ({ route }) => {
                 
                 return [...prevChats, formattedMessage];
             });
+        });
+
+        // 웹 버전과 동일한 소켓 이벤트 리스너 추가
+        socket.on('uploadFailed', () => {
+            console.log('[uploadFailed] 파일 업로드 실패');
+            Alert.alert("오류", "파일을 업로드 할 수 없습니다. 다시 시도해주세요.");
+        });
+
+        socket.on('downloadLink', (downloadLink, fileData) => {
+            console.log('다운로드 링크 : ', downloadLink);
+            console.log('fileData : ', JSON.stringify(fileData));
+        });
+
+        socket.on('client-download', (blobData, blobType, fileName, user_id, file_id, room_id, connectId) => {
+            console.log('client-download');
+            // 모바일에서는 파일 다운로드 처리가 다를 수 있음
+            Alert.alert("다운로드", `${fileName} 파일이 다운로드되었습니다.`);
+        });
+
+        socket.on('no_active_strage', () => {
+            Alert.alert("오류", "파일 저장 스토리지가 비활성화 상태여서 업로드 및 다운로드가 불가합니다.");
+        });
+
+        socket.on('downloadFailed', () => {
+            Alert.alert("오류", "원본 파일이 손상되었거나 다운로드 할 수 없습니다.");
+        });
+
+        socket.on('ftp-download', async (downloadURL, room_id, user_id, file_id) => {
+            console.log('ftp-download 신호 받음:', downloadURL);
+            // FTP 다운로드 처리
+            Alert.alert("FTP 다운로드", "FTP 파일 다운로드가 완료되었습니다.");
         });
 
         return () => {

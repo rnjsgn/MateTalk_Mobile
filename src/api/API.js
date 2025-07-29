@@ -50,6 +50,13 @@ const API = {
     $http.get(parameterToPath(`/files/:roomId`, { roomId })),
 
   /**
+   * 파일 업로드
+   * --
+   */
+  uploadFile: (roomId, formData) =>
+    $http.multipart(parameterToPath(`/upload/:roomId`, { roomId }), formData),
+
+  /**
    * 회원가입
    * --
    */

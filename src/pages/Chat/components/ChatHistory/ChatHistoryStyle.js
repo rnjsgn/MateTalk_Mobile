@@ -98,5 +98,50 @@ export const ChatHistoryStyle = StyleSheet.create({
         marginLeft : 5,
 
         alignSelf : 'flex-end'
+    },
+
+    // 파일 메시지 스타일
+    MyFileBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 15,
+        backgroundColor: Colors.primary,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: Colors.primary,
+    },
+
+    otherFileBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 15,
+        backgroundColor: Colors.sub4,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: Colors.sub4,
+    },
+
+    fileIconContainer: {
+        marginRight: 10,
+    },
+
+    fileIcon: {
+        fontSize: 24,
+    },
+
+    fileInfo: {
+        flex: 1,
+    },
+
+    fileName: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: Colors.sub1,
+        marginBottom: 2,
+    },
+
+    fileSize: {
+        fontSize: 12,
+        color: Colors.sub3,
     }
 })

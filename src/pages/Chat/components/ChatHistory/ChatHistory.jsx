@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useEffect } from "react";
-import { Image, Text, View, ScrollView } from "react-native";
+import { Image, Text, View, ScrollView, TouchableOpacity } from "react-native";
 
 import { ChatHistoryStyle } from "./ChatHistoryStyle";
 import { useAuthStore } from "../../../../store/authStore";
@@ -26,6 +26,15 @@ const formatDateTime = (iso) => {
   }
 };
 
+// 파일 크기 포맷 함수
+const formatFileSize = (bytes) => {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
+
 export const ChatHistory = ({ chats = [], roomId }) => {
   const { user } = useAuthStore();
   const scrollViewRef = useRef();
@@ -48,6 +57,28 @@ export const ChatHistory = ({ chats = [], roomId }) => {
     }
   }, [sortedChats]);
 
+  // 파일 메시지 렌더링
+  const renderFileMessage = (data, isMine) => {
+    const file = data.file;
+    const fileSize = formatFileSize(file?.size || 0);
+    
+    return (
+      <View style={isMine ? ChatHistoryStyle.MyFileBox : ChatHistoryStyle.otherFileBox}>
+        <View style={ChatHistoryStyle.fileIconContainer}>
+          <Text style={ChatHistoryStyle.fileIcon}>📎</Text>
+        </View>
+        <View style={ChatHistoryStyle.fileInfo}>
+          <Text style={ChatHistoryStyle.fileName} numberOfLines={1}>
+            {file?.name || '파일'}
+          </Text>
+          <Text style={ChatHistoryStyle.fileSize}>
+            {fileSize}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <ScrollView 
       ref={scrollViewRef}
@@ -58,11 +89,16 @@ export const ChatHistory = ({ chats = [], roomId }) => {
       {sortedChats.map((data, idx) => {
         const isMine = data.user_id === user?.id;
         const time = formatDateTime(data.chat_date);
+        const isFileMessage = data.type === 'file';
 
         return isMine ? (
           <View key={data.chat_id || idx} style={ChatHistoryStyle.MyMessageWrap}>
             <View style={ChatHistoryStyle.MyMessageBox}>
-              <Text style={ChatHistoryStyle.MyMessage}>{data.chat_msg}</Text>
+              {isFileMessage ? (
+                renderFileMessage(data, true)
+              ) : (
+                <Text style={ChatHistoryStyle.MyMessage}>{data.chat_msg}</Text>
+              )}
             </View>
             <Text style={ChatHistoryStyle.MyTime}>{time}</Text>
           </View>
@@ -77,7 +113,11 @@ export const ChatHistory = ({ chats = [], roomId }) => {
               <Text style={ChatHistoryStyle.userTime}>{time}</Text>
             </View>
             <View style={ChatHistoryStyle.otherMessageBox}>
-              <Text style={ChatHistoryStyle.otherMessage}>{data.chat_msg}</Text>
+              {isFileMessage ? (
+                renderFileMessage(data, false)
+              ) : (
+                <Text style={ChatHistoryStyle.otherMessage}>{data.chat_msg}</Text>
+              )}
             </View>
           </View>
         );
